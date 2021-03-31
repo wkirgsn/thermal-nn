@@ -343,8 +343,7 @@ class StateResetter(tf.keras.callbacks.Callback):
 class IntegratorStateResetter(StateResetter):
     """Resets with initial values of the targets"""
 
-    def __init__(self, datamanager=None, layer='rnn',
-                 noise=None):
+    def __init__(self, datamanager=None, layer='rnn', noise=None):
         super().__init__(datamanager, layer, noise)
         if layer is not None:
             state_cols = cfg.data_cfg['Target_param_names']

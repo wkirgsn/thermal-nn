@@ -22,12 +22,14 @@ One outputs thermal conductances, another the inverse thermal capacitances, and 
 
 In contrast to other neural network architectures, a TNN needs at least to know which features are temperatures and which are not.
 The TNN's inner cell working is that of [lumped-parameter thermal models](https://en.wikipedia.org/wiki/Lumped-element_model#Thermal_systems) (LPTNs).
+A TNN can be interpreted as a hyper network that is parameterizing an LPTN, which in turn is iteratively solved for the current temperature prediction.
 
 In a nutshell, a TNN solves the difficult-to-grasp nonlinearity and scheduling-vector-dependency in [quasi-LPV](https://en.wikipedia.org/wiki/Linear_parameter-varying_control) systems, which an LPTN represents.
 
 ## Code Structure
 
-The streamlined usage can be seen in the [jupyter notebook](ThermalNeuralNetworks.ipynb).
-It makes heavy use of auxiliary functions and classes declared in `aux`. 
+The streamlined usage can be seen in the jupyter notebooks, one with tensorflow2 and one with pytorch.
+The tf2-version makes heavy use of auxiliary functions and classes declared in `aux`, whereas the pytorch notebook is self-contained and does not import from 'aux'. 
 The TNN keras model can be found in [aux/lptn_model](aux/lptn_model.py) as `TNNCell`.
 
+In both frameworks, the TNN is defined as a cell class that is plugged into an outer RNN layer.

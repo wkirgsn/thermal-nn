@@ -17,7 +17,7 @@ The TNN is introduced in:
 
 ![](img/topology.png)
 
-Three function approximators (e.g., multi-layer perceptrons (MLPs)) model the thermal characteristics of an arbitraryly complex component arrangement forming a system of interest.
+Three function approximators (e.g., multi-layer perceptrons (MLPs)) model the thermal characteristics of an arbitrarily complex component arrangement forming a system of interest.
 One outputs thermal conductances, another the inverse thermal capacitances, and the last one the power losses generated within the components.
 
 In contrast to other neural network architectures, a TNN needs at least to know which features are temperatures and which are not.

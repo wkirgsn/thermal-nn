@@ -207,6 +207,17 @@ class TNNCell(layers.Layer):
         self.adj_mat += self.adj_mat.T
         self.n_temps = n_temps
 
+        # optimized indexing (faster computation)
+        self.temps_indexer = tf.convert_to_tensor(
+            np.array([j for i in range(self.output_size)
+                      for j in range(n_temps)
+                      if j != i], dtype=np.int32) \
+                .reshape(-1, n_temps - 1), dtype=tf.int32)
+        self.adj_mat_indexed = tf.convert_to_tensor(
+            self.adj_mat[np.repeat(np.arange(self.output_size), n_temps - 1),
+                         tf.reshape(self.temps_indexer, [-1])] \
+                .reshape(self.output_size, -1), dtype=tf.int32)
+
         # power loss modeling
         self.ploss_out_gen = tf.keras.Sequential([
             Dense(16, name=f'ploss_gen_1', activation='tanh', use_bias=True),
@@ -232,20 +243,15 @@ class TNNCell(layers.Layer):
         temps = tf.concat([prev_out] + [tf.reshape(inputs[:, i], [-1, 1])
                                         for i in self.temp_idcs], axis=1)
         non_temps = tf.stack([inputs[:, i] for i in self.nontemp_idcs], -1)
-        all_inputs =  tf.concat([non_temps, temps], 1)
+        all_inputs = tf.concat([non_temps, temps], 1)
         # thermal conductances
         conducts = self.conductance_net(all_inputs)
 
-        temp_diffs_l = [
-            tf.reduce_sum(tf.stack([
-                (temps[:, j] - prev_out[:, i]) *
-                conducts[:, self.adj_mat[i, j]]
-                for j in range(self.n_temps) if j != i
-                                                and (i, j) not in self.drop_g
-            ], -1), 1)
-            for i in range(self.output_size)
-        ]
-        temp_diffs = tf.stack(temp_diffs_l, axis=-1)
+        a = tf.gather(temps, indices=self.temps_indexer, axis=1, batch_dims=0)
+        b = tf.expand_dims(prev_out, axis=-1)
+        c = tf.gather(conducts, indices=self.adj_mat_indexed, axis=1,
+                      batch_dims=0)
+        temp_diffs = tf.reduce_sum((a - b) * c, axis=-1)
 
         # powerloss
         power_loss = self.ploss_out_gen(all_inputs)

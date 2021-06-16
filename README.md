@@ -21,7 +21,7 @@ Three function approximators (e.g., multi-layer perceptrons (MLPs)) model the th
 One outputs thermal conductances, another the inverse thermal capacitances, and the last one the power losses generated within the components.
 
 In contrast to other neural network architectures, a TNN needs at least to know which features are temperatures and which are not.
-The TNN's inner cell working is that of [lumped-parameter thermal models](https://en.wikipedia.org/wiki/Lumped-element_model#Thermal_systems) (LPTNs).
+The TNN's inner cell working is that of [lumped-parameter thermal networks](https://en.wikipedia.org/wiki/Lumped-element_model#Thermal_systems) (LPTNs).
 A TNN can be interpreted as a hyper network that is parameterizing an LPTN, which in turn is iteratively solved for the current temperature prediction.
 
 In a nutshell, a TNN solves the difficult-to-grasp nonlinearity and scheduling-vector-dependency in [quasi-LPV](https://en.wikipedia.org/wiki/Linear_parameter-varying_control) systems, which an LPTN represents.

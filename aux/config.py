@@ -36,7 +36,8 @@ data_cfg = {
     'downsample_rate': 1,
     'sample_time': '500ms',
     'downsample_val_test': True,
-    'p_id_col': 'profile_id'
+    'p_id_col': 'profile_id',
+    'db_path': None
     }
 
 plot_cfg = {'do_plot': True,

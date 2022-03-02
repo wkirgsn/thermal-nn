@@ -2,5 +2,7 @@ tensorflow >= 2.1.0
 pandas
 matplotlib
 seaborn
-scikit-learn
 jupyter
+torch
+tqdm
+

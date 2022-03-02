@@ -13,6 +13,8 @@ The TNN is introduced in:
 }
 ```
 
+The data set is freely available at [Kaggle](https://www.kaggle.com/wkirgsn/electric-motor-temperature).
+
 ## Topology
 
 ![](img/topology.png)

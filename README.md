@@ -3,7 +3,7 @@ This repository demonstrates the usage of thermal neural networks (TNNs) on an e
 
 The TNN is introduced in:
 ```
-@misc{kirchgässner2021thermal,
+@misc{kirchgässner2021_tnn_preprint,
   title={Thermal Neural Networks: Lumped-Parameter Thermal Modeling With State-Space Machine Learning}, 
   author={Wilhelm Kirchgässner and Oliver Wallscheid and Joachim Böcker},
   year={2021},
@@ -12,6 +12,8 @@ The TNN is introduced in:
   primaryClass={cs.LG}
 }
 ```
+
+Further, this repository supports and demonstrates the findings around a TNN's generalization to [Neural Ordinary DIfferential Equations](https://arxiv.org/abs/1806.07366) as presented on [IPEC2022](https://www.ipec2022.org/index.html). (citation t.b.a.)
 
 The data set is freely available at [Kaggle](https://www.kaggle.com/wkirgsn/electric-motor-temperature).
 

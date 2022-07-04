@@ -13,9 +13,30 @@ The TNN is introduced in:
 }
 ```
 
-Further, this repository supports and demonstrates the findings around a TNN's generalization to [Neural Ordinary DIfferential Equations](https://arxiv.org/abs/1806.07366) as presented on [IPEC2022](https://www.ipec2022.org/index.html). (citation t.b.a.)
+Further, this repository supports and demonstrates the findings around a TNN's generalization to [Neural Ordinary DIfferential Equations](https://arxiv.org/abs/1806.07366) as presented on [IPEC2022](https://www.ipec2022.org/index.html). 
+If you want to cite that work, please use
+```
+@INPROCEEDINGS{kirchgässner_node_ipec2022,
+  author={Kirchgässner, Wilhelm and Wallscheid, Oliver and Böcker, Joachim},
+  booktitle={2022 International Power Electronics Conference (IPEC-Himeji 2022- ECCE Asia)}, 
+  title={Learning Thermal Properties and Temperature Models of Electric Motors with Neural Ordinary Differential Equations}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={2746-2753},
+  doi={10.23919/IPEC-Himeji2022-ECCE53331.2022.9807209}}
+```
 
-The data set is freely available at [Kaggle](https://www.kaggle.com/wkirgsn/electric-motor-temperature).
+The data set is freely available at [Kaggle](https://www.kaggle.com/wkirgsn/electric-motor-temperature) and can be cited as
+```
+@misc{electric_motor_temp_kaggle,
+  title={Electric Motor Temperature},
+  url={https://www.kaggle.com/dsv/2161054},
+  DOI={10.34740/KAGGLE/DSV/2161054},
+  publisher={Kaggle}, 
+  author={Wilhelm Kirchgässner and Oliver Wallscheid and Joachim Böcker}, 
+  year={2021}}
+```
 
 ## Topology
 
@@ -32,8 +53,6 @@ In a nutshell, a TNN solves the difficult-to-grasp nonlinearity and scheduling-v
 
 ## Code Structure
 
-The streamlined usage can be seen in the jupyter notebooks, one with tensorflow2 and one with pytorch.
-The tf2-version makes heavy use of auxiliary functions and classes declared in `aux`, whereas the pytorch notebook is self-contained and does not import from 'aux'. 
-The TNN keras model can be found in [aux/lptn_model](aux/lptn_model.py) as `TNNCell`.
-
+The streamlined usage can be seen in the jupyter notebooks, one with tensorflow2 (TNN) and two with pytorch (TNN and NODE).
+The tf2-version makes heavy use of auxiliary functions and classes declared in `aux`, whereas the pytorch notebooks are self-contained and do not import from 'aux'. 
 In both frameworks, the TNN is defined as a cell class that is plugged into an outer RNN layer.

@@ -14,13 +14,13 @@ A TNN can be interpreted as a hyper network that is parameterizing a LPTN, which
 
 In contrast to other neural network architectures, a TNN needs at least to know which input features are temperatures and which are not.
 Target features are always temperatures.
-In a nutshell, a TNN solves the difficult-to-grasp nonlinearity and scheduling-vector-dependency in [quasi-LPV](https://en.wikipedia.org/wiki/Linear_parameter-varying_control) systems, which an LPTN represents.
+In a nutshell, a TNN solves the difficult-to-grasp nonlinearity and scheduling-vector-dependency in [quasi-LPV](https://en.wikipedia.org/wiki/Linear_parameter-varying_control) systems, which a LPTN represents.
 
 ## Code Structure
 
 The streamlined usage can be seen in the jupyter notebooks, one with tensorflow2 (TNN) and two with PyTorch (TNN and NODE).
-The tf2-version makes heavy use of auxiliary functions and classes declared in `aux`, whereas the pytorch notebooks are self-contained and do not import from 'aux'. 
-Note that the PyTorch examples are substantially simpler and should be preferred to get started.
+The tf2-version makes heavy use of auxiliary functions and classes declared in `aux`, whereas the PyTorch notebooks are self-contained and do not import from 'aux'. 
+Note that the PyTorch examples are substantially simpler and should be preferred for getting started.
 
 ## Citing
 

@@ -5,20 +5,22 @@ This repository demonstrates the usage of [thermal neural networks (TNNs)](https
 
 ![](img/topology.png)
 
-Three function approximators (e.g., multi-layer perceptrons (MLPs)) model the thermal characteristics of an arbitrarily complex component arrangement forming a system of interest.
-One outputs thermal conductances, another the inverse thermal capacitances, and the last one the power losses generated within the components.
-
-In contrast to other neural network architectures, a TNN needs at least to know which features are temperatures and which are not.
+Three function approximators (e.g., multi-layer perceptrons (MLPs)) model the thermal parameters of an arbitrarily complex component arrangement forming a system of interest.
+Such a system is assumed to be sufficiently representable by a system of ordinary differential equations (not partial differential equations!).
+One function approximator outputs thermal conductances, another the inverse thermal capacitances, and the last one the power losses generated within the components.
 The TNN's inner cell working is that of [lumped-parameter thermal networks](https://en.wikipedia.org/wiki/Lumped-element_model#Thermal_systems) (LPTNs).
-A TNN can be interpreted as a hyper network that is parameterizing an LPTN, which in turn is iteratively solved for the current temperature prediction.
+A LPTN is an electrically equivalent circuit whose parameters can be interpreted to be thermal parameters of a system.
+A TNN can be interpreted as a hyper network that is parameterizing a LPTN, which in turn is iteratively solved for the current temperature prediction.
 
+In contrast to other neural network architectures, a TNN needs at least to know which input features are temperatures and which are not.
+Target features are always temperatures.
 In a nutshell, a TNN solves the difficult-to-grasp nonlinearity and scheduling-vector-dependency in [quasi-LPV](https://en.wikipedia.org/wiki/Linear_parameter-varying_control) systems, which an LPTN represents.
 
 ## Code Structure
 
-The streamlined usage can be seen in the jupyter notebooks, one with tensorflow2 (TNN) and two with pytorch (TNN and NODE).
+The streamlined usage can be seen in the jupyter notebooks, one with tensorflow2 (TNN) and two with PyTorch (TNN and NODE).
 The tf2-version makes heavy use of auxiliary functions and classes declared in `aux`, whereas the pytorch notebooks are self-contained and do not import from 'aux'. 
-In both frameworks, the TNN is defined as a cell class that is plugged into an outer RNN layer.
+Note that the PyTorch examples are substantially simpler and should be preferred to get started.
 
 ## Citing
 

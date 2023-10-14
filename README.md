@@ -19,7 +19,7 @@ In a nutshell, a TNN solves the difficult-to-grasp nonlinearity and scheduling-v
 ## Code Structure
 
 The streamlined usage can be seen in the jupyter notebooks, one with tensorflow2 (TNN) and two with PyTorch (TNN and NODE).
-The tf2-version makes heavy use of auxiliary functions and classes declared in `aux`, whereas the PyTorch notebooks are self-contained and do not import from 'aux'. 
+The tf2-version makes heavy use of auxiliary functions and classes declared in `tf2utils`, whereas the PyTorch notebooks are self-contained and do not import from `tf2utils`. 
 Note that the PyTorch examples are substantially simpler and should be preferred for getting started.
 
 ## Citing

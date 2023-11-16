@@ -9,7 +9,7 @@ from tensorflow.keras import regularizers, initializers, constraints, activation
 import numpy as np
 import warnings
 from copy import deepcopy
-import aux.config as cfg
+import tf2utils.config as cfg
 
 warnings.filterwarnings('ignore')
 

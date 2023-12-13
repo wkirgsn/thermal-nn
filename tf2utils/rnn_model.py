@@ -7,7 +7,7 @@ from tensorflow.keras.wrappers.scikit_learn import KerasRegressor
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 
-import aux.config as cfg
+import tf2utils.config as cfg
 
 
 class DataGenerator(Sequence):

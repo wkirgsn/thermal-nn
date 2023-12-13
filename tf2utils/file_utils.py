@@ -11,9 +11,9 @@ from matplotlib import pyplot as plt
 from matplotlib.colors import rgb2hex
 import tensorflow as tf
 
-from aux import config as cfg
-from aux.data import LightDataManager
-from aux.metrics import print_scores
+from tf2utils import config as cfg
+from tf2utils.data import LightDataManager
+from tf2utils.metrics import print_scores
 
 
 def measure_time(func):

@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Kirchgässner"
+  given-names: "Wilhelm"
+  orcid: "https://orcid.org/0000-0001-9490-1843"
+title: "thermal-nn: Thermal Neural Networks with an application to an electric motor"
+version: 0.0.1
+date-released: 2021-03-30
+url: "https://github.com/wkirgsn/thermal-nn"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Kirchgässner"
+    given-names: "Wilhelm"
+    orcid: "https://orcid.org/0000-0001-9490-1843"
+  - family-names: "Wallscheid"
+    given-names: "Oliver"
+    orcid: "https://orcid.org/0000-0001-9362-8777"
+  - family-names: "Böcker"
+    given-names: "Joachim"
+    orcid: "https://orcid.org/0000-0002-8480-7295"
+  doi: "10.1016/j.engappai.2022.105537"
+  journal: "Engineering Applications of Artificial Intelligence"
+  month: 1
+  start: 105537 # First page number
+  end: 105537 # Last page number
+  title: "Thermal neural networks: Lumped-parameter thermal modeling with state-space machine learning"
+  volume: 117
+  year: 2023

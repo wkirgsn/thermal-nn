@@ -4,4 +4,6 @@ pandas
 matplotlib
 jupyter
 tqdm
-
+torchdiffeq
+torchinfo
+scikit-learn

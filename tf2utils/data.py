@@ -12,8 +12,8 @@ from sklearn.metrics import mean_squared_error as mse, mean_squared_log_error\
     as msle, mean_absolute_error as mae, r2_score
 from tensorflow.keras.losses import mean_squared_error, mean_squared_logarithmic_error
 
-import aux.config as cfg
-from aux.general_model import SimpleScaler, OnMaxAbsValueScaler
+import tf2utils.config as cfg
+from tf2utils.general_model import SimpleScaler, OnMaxAbsValueScaler
 
 
 class DataManagerScorer:

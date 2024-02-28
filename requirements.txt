@@ -1,8 +1,7 @@
-tensorflow >= 2.1.0
+tensorflow == 2.15.0  # only for tensorflow example
+torch == 2.2.1  # only for pytorch example
 pandas
 matplotlib
-seaborn
 jupyter
-torch
 tqdm
 

@@ -6,7 +6,7 @@
 
 [Paderborn University](https://www.uni-paderborn.de/en/), [Dept. of Power Electronics and Electrical Drives](https://ei.uni-paderborn.de/en/lea)
 
-Paper: [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0952197622005279)
+Paper: [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0952197622005279),
 Preprint: [arXiv 2103.16323](https://arxiv.org/abs/2103.16323)
 
 </div>
@@ -15,30 +15,34 @@ Preprint: [arXiv 2103.16323](https://arxiv.org/abs/2103.16323)
 With electric power systems becoming more compact with higher power density, the relevance of thermal stress and precise real-time-capable model-based thermal monitoring increases. Previous work on thermal modeling by lumped-parameter thermal networks (LPTNs) suffers from mandatory expert knowledge for their design and from uncertainty regarding the required power loss model. In contrast, deep learning-based temperature models cannot be designed with the low amount of model parameters as in a LPTN at equal estimation accuracy. In this work, the thermal neural network (TNN) is introduced, which unifies both, consolidated knowledge in the form of heat-transfer-based LPTNs, and data-driven nonlinear function approximation with supervised machine learning. The TNN approach overcomes the drawbacks of previous paradigms by having physically interpretable states through its state-space representation, is end-to-end differentiable through an automatic differentiation framework, and requires no material, geometry, nor expert knowledge for its design. Experiments on an electric motor data set show that a TNN achieves higher temperature estimation accuracies than previous white-/gray- or black-box models with a mean squared error of 3.18 K² and a worst-case error of 5.84 K at 64 model parameters.
 
 ## Purpose
-This repository demonstrates the usage of thermal neural networks (TNNs) on an electric motor data set.
+This repository demonstrates the application of thermal neural networks (TNNs) on an electric motor data set.
 
 The data set is freely available at [Kaggle](https://www.kaggle.com/wkirgsn/electric-motor-temperature).
+
+The TNN declaration and its usage are demonstrated in the jupyter notebooks, with tensorflow in `TNN_tensorflow.ipynb` and with PyTorch in `TNN_pytorch.ipynb`.
+
 
 ## Topology
 
 ![](img/topology.png)
 
-Three function approximators (e.g., multi-layer perceptrons (MLPs)) model the thermal parameters of an arbitrarily complex component arrangement forming a system of interest.
+Three function approximators (e.g., multi-layer perceptrons (MLPs)) model the thermal parameters (i.e., thermal conductances, thermal capacitances, and power losses) of an arbitrarily complex component arrangement in a system.
 Such a system is assumed to be sufficiently representable by a system of ordinary differential equations (not partial differential equations!).
+
 One function approximator outputs thermal conductances, another the inverse thermal capacitances, and the last one the power losses generated within the components.
+Although thermal parameters are to be estimated, their ground truth is not required.
+Instead, measured component temperatures can be plugged into a cost function, where they are compared with the estimated temperatures that result from the thermal parameters that are estimated from the current system excitation.
+[Error backprop through time](https://en.wikipedia.org/wiki/Backpropagation_through_time) will take over from here. 
+
 The TNN's inner cell working is that of [lumped-parameter thermal networks](https://en.wikipedia.org/wiki/Lumped-element_model#Thermal_systems) (LPTNs).
 A LPTN is an electrically equivalent circuit whose parameters can be interpreted to be thermal parameters of a system.
 A TNN can be interpreted as a hyper network that is parameterizing a LPTN, which in turn is iteratively solved for the current temperature prediction.
 
 In contrast to other neural network architectures, a TNN needs at least to know which input features are temperatures and which are not.
 Target features are always temperatures.
+
 In a nutshell, a TNN solves the difficult-to-grasp nonlinearity and scheduling-vector-dependency in [quasi-LPV](https://en.wikipedia.org/wiki/Linear_parameter-varying_control) systems, which a LPTN represents.
 
-## Code Structure
-
-The streamlined usage can be seen in the jupyter notebooks, one with tensorflow2 (TNN) and two with PyTorch (TNN and NODE).
-The tf2-version makes heavy use of auxiliary functions and classes declared in `tf2utils`, whereas the PyTorch notebooks are self-contained and do not import from `tf2utils`. 
-Note that the PyTorch examples are substantially simpler and should be preferred for getting started.
 
 ## Citing
 

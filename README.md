@@ -22,6 +22,22 @@ The data set is freely available at [Kaggle](https://www.kaggle.com/wkirgsn/elec
 The TNN declaration and its usage are demonstrated in the jupyter notebooks, with tensorflow in `TNN_tensorflow.ipynb` and with PyTorch in `TNN_pytorch.ipynb`.
 There is also a MATLAB implementation in the matlab folder, see the corresponding [README for MATLAB](./matlab/README.md).
 
+## Getting Started
+
+The Python environment is managed with [uv](https://docs.astral.sh/uv/) and fully pinned in `uv.lock`, so the notebooks run with exactly the package versions they were validated against (Python 3.11, PyTorch 2.2, TensorFlow 2.15).
+This repository is a completed research demonstration and its dependencies are intentionally frozen rather than kept up to date.
+
+1. Download the data set from [Kaggle](https://www.kaggle.com/wkirgsn/electric-motor-temperature) and place `measures_v2.csv` in `data/input/`.
+2. Install the environment and start Jupyter:
+   ```
+   uv sync
+   uv run jupyter lab
+   ```
+
+`uv sync` installs everything for all notebooks.
+To install only what one framework needs, use e.g. `uv sync --no-default-groups --group torch` (or `--group tensorflow`, or `--group node` for `NeuralOrdinaryDifferentialEq_torch.ipynb`).
+PyTorch is installed as a CPU-only build, since the notebooks run on CPU.
+
 ## Topology
 
 ![](img/topology.png)

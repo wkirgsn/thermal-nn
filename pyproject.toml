@@ -1,0 +1,50 @@
+[project]
+name = "thermal-nn"
+version = "1.0.0"
+description = "Thermal neural networks (TNNs) demonstrated on an electric motor data set"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Wilhelm Kirchgässner" }]
+# This is a frozen research demo. The ML frameworks are pinned to the versions
+# the notebooks were written and validated against (TF 2.15 caps Python at 3.11).
+requires-python = "==3.11.*"
+dependencies = [
+    "numpy<2", # torch 2.2 and tensorflow 2.15 are built against NumPy 1.x
+    "pandas<3", # NeuralOrdinaryDifferentialEq_torch.ipynb uses the removed "S" frequency alias
+    "matplotlib",
+    "tqdm",
+    "jupyter",
+]
+
+[project.urls]
+Repository = "https://github.com/wkirgsn/thermal-nn"
+Paper = "https://doi.org/10.1016/j.engappai.2022.105537"
+
+[dependency-groups]
+# TNN_pytorch.ipynb
+torch = ["torch==2.2.*"]
+# TNN_tensorflow.ipynb
+tensorflow = ["tensorflow==2.15.*"]
+# NeuralOrdinaryDifferentialEq_torch.ipynb
+node = [
+    { include-group = "torch" },
+    "torchdiffeq",
+    "torchinfo",
+]
+
+[tool.uv]
+# Not an installable package, just an environment for the notebooks.
+package = false
+default-groups = "all"
+# Keep any future re-lock reproducible by ignoring releases after the freeze date.
+exclude-newer = "2026-10-25T00:00:00Z"
+
+# The notebooks run on CPU on purpose, so skip the multi-GB CUDA wheels from PyPI.
+[tool.uv.sources]
+torch = [{ index = "pytorch-cpu", marker = "sys_platform != 'darwin'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
